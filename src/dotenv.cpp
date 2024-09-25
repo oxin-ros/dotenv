@@ -27,7 +27,7 @@ namespace dotenv
             std::cend(line),
             '='
         );
-        if (delim_pos == std::cend(line) || *(delim_pos + 1) != '\"') throw std::runtime_error("Missing start-quotation marks.");
+        if (delim_pos == std::cend(line)) throw std::runtime_error("Malformed .env file: Expecting '='.");
 
         auto last_char = std::find(
             std::cbegin(line),
@@ -35,7 +35,6 @@ namespace dotenv
             '\0'
         );
         if (last_char == std::cend(line)) last_char = std::cend(line) - 1;
-        if (*(last_char - 1) != '\"') throw std::runtime_error("Missing end-quotation marks.");
 
         std::string name{std::cbegin(line), delim_pos};
         std::string value{delim_pos + 2, last_char - 1};
@@ -85,6 +84,11 @@ namespace dotenv
         {
             try
             {
+                // Skip empty lines and comments
+                if (line[0] == '#') continue;
+                if (line[0] == '\n') continue;
+                if (line.empty()) continue;
+                
                 auto env_vals = parse_line(line);
                 if (env_vals.second == "") continue;
                 setenv(env_vals.first.c_str(), env_vals.second.c_str(), 1);
