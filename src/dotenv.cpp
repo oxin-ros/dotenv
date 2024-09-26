@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <optional>
 #include <regex>
 #include <stdexcept>
@@ -102,12 +103,12 @@ namespace dotenv
                 {
                     env_vars.emplace_back(std::move(env_vals.first));
                 }
+                std::cout << "Loaded " << env_vals.first << " = " << env_vals.second << "\n";
             }
             catch(const std::runtime_error& e)
             {
                 throw;
             }
-            std::cout << "Loaded " << env_vals.first << " = " << env_vals.second << "\n";
         }
     }
 
