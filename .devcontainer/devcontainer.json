@@ -1,0 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "dotenv",
+	"image": "mcr.microsoft.com/devcontainers/cpp:1-debian-12",
+	"remoteUser": "root",
+	"updateRemoteUserUID": true,
+	"runArgs": [
+		"--network","host",
+		"--privileged",
+		"--ipc","host"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack",
+				"ms-vscode.cpptools",
+				"GitHub.copilot"
+			]
+		}
+	}
+}
