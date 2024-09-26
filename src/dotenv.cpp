@@ -70,10 +70,9 @@ namespace dotenv
 
     }
 
-    void load(std::filesystem::path env_dir, const bool overwrite)
+    void load(std::filesystem::path env_file, const bool overwrite)
     {
-        env_dir /= ".env";
-        std::ifstream ifs(env_dir.c_str());
+        std::ifstream ifs(env_file.c_str());
 
         if (ifs.bad()) throw std::runtime_error("Could not load .env file!");
 

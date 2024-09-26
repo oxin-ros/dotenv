@@ -5,7 +5,7 @@ int main()
 {
     // dotenv::load takes the path to the directory
     // where the .env file is located
-    dotenv::load("../");
+    dotenv::load("../.env");
 
     // Gets all Variables succesfully parsed from the .env file
     auto dot_env_vars = dotenv::get_variables();
