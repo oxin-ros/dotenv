@@ -107,6 +107,7 @@ namespace dotenv
             {
                 throw;
             }
+            std::cout << "Loaded " << env_vals.first << " = " << env_vals.second << "\n";
         }
     }
 
