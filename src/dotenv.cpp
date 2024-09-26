@@ -34,10 +34,9 @@ namespace dotenv
             std::cend(line),
             '\0'
         );
-        if (last_char == std::cend(line)) last_char = std::cend(line) - 1;
 
         std::string name{std::cbegin(line), delim_pos};
-        std::string value{delim_pos + 2, last_char - 1};
+        std::string value{delim_pos + 1, last_char};
 
         for (auto it = std::find(std::begin(value), std::end(value), '$'); 
                   it != std::cend(value);
